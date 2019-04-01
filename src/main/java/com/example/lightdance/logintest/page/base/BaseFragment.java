@@ -11,15 +11,19 @@ import com.example.lightdance.logintest.app.MessageLevel;
  * @date 2018/2/2.
  */
 
-public class BaseFragment extends Fragment {
+public class BaseFragment<P extends BasePresenterInterface> extends Fragment implements BaseView<P>{
+    /**
+     * 泛型控制presenter具体类型
+     */
+    protected P presenter;
 
     /**
      * 参数表详见 {@see com.example.lightdance.takemyadvice.app.MessageLevel}
      * @param message 信息
-     * @param level 默认为TOAST
+     * @param level 消息重要等级
      */
+    @Override
     public void showMessage(String message , MessageLevel level){
-        level = MessageLevel.TOAST;
         switch (level){
             case TOAST:
                 Toast.makeText(getActivity() , message , Toast.LENGTH_SHORT).show();
@@ -33,6 +37,14 @@ public class BaseFragment extends Fragment {
                 break;
         }
     }
+
+    @Override
+    public void bindPresenter(P presenter) {
+        //让presenter观察自己(给presenter添加声明周期)
+        getLifecycle().addObserver(presenter);
+        this.presenter = presenter;
+    }
+
     public void showMessage(String message){
         showMessage(message , MessageLevel.TOAST);
     }

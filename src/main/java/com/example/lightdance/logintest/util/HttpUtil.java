@@ -20,6 +20,7 @@ public class HttpUtil {
     private final static int READ_TIMEOUT = 60;
     private final static int WRITE_TIMEOUT = 40;
     //设置读写连接的超时时间
+
     private static final OkHttpClient client = new OkHttpClient.Builder()
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -39,7 +40,7 @@ public class HttpUtil {
     }
 
     /**
-     * enqueue方法内部已开子线程，传数据的方法
+     * enqueue方法内部已开子线程，传数据的方法（重载方法）
      *
      * @param address     地址
      * @param requestBody 传送的数据，需要构造{@link JSONObject}JSON数据传入

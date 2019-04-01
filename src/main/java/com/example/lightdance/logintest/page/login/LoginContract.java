@@ -12,15 +12,25 @@ import com.example.lightdance.logintest.page.base.BaseView;
  */
 
 class LoginContract {
+    /**
+     * presenter,各种点击事件
+     */
     interface Presenter extends BasePresenterInterface {
         void clickLogin(UserBean user , boolean isRemember);
 
-        void clickSignup();
 
-        void clickLogout();
     }
 
+    /**
+     * view 各种UI状态。其实一些常用、通用的方法应当提取到BaseView中
+     */
     interface View extends BaseView<Presenter> {
+        /**
+         * 这个方法是为了分担onCreate的任务，因此在以最快速度建立好界面后，通过这个方法绑定xml中的控件，
+         * 设置点击监听啥的。可以理解为能在onResume时才做的初始化工作。
+         */
+        void render();
+
         void showLogging();
 
         void showLoginSuccess(String username);
@@ -29,7 +39,7 @@ class LoginContract {
 
         void showRememberState(boolean isRemember);
 
-        void showLoginInfo(UserBean user);
+        void fillLoginInfo(UserBean user);
 
         void showFailureMessage(AppError error);
     }

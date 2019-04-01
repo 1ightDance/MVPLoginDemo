@@ -16,7 +16,7 @@ public interface LoginInterface {
      */
     interface LoginListener {
         /**
-         * 成功时，把user传给onsuccess方法，这个方法用来欢迎新登陆的用户
+         * 成功时，把user传给onSuccess方法，这个方法用来欢迎新登陆的用户
          * @param user 用户实体类
          */
         void onSuccess(UserBean user);
@@ -45,6 +45,10 @@ public interface LoginInterface {
         void onFailure(AppError error);
     }
 
+    /**
+     * 获取存储的用户信息，如果有的话
+     * @param listener 监听器
+     */
     void getStoredUserLoginInfo(GetLoginInfoListener listener);
 
     /**
@@ -54,7 +58,7 @@ public interface LoginInterface {
     boolean isRememberPassword();
 
     /**
-     * 模拟登陆
+     * 登陆
      * @param user 用户
      * @param listener 监听
      */
