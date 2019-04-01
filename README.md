@@ -10,7 +10,7 @@
 5. 使用的lifecycle需要再build.gradle中implementation一下
 
 ------
-###建议顺序：
+### 建议顺序：
 + 看看app包都放些什么，文件的逻辑结构
 + 理解mvp之后是page.base包各父类、接口类的通用方法，以及如何给presenter绑定生命周期
 + 结合page.login包的activity，重点看如何实现view和presenter相互绑定
